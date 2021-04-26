@@ -70,16 +70,49 @@ public class FSMTest
         fsm.nextState(Signal.REQUEST);
         Assert.assertEquals(State.REQUEST, fsm.getCurrentState());
 
+        fsm.nextState(Signal.FINISH);
+        Assert.assertEquals(State.INIT, fsm.getCurrentState());
+
+        fsm.nextState(Signal.UPDATE);
+        Assert.assertEquals(State.FORM_UPDATED, fsm.getCurrentState());
+
         fsm.nextState(Signal.TIMER);
+        Assert.assertEquals(State.FORM_UPDATED, fsm.getCurrentState());
+
+        fsm.nextState(Signal.LOAD_ERROR);
+        Assert.assertEquals(State.LOAD_ERROR, fsm.getCurrentState());
+
+        fsm.nextState(Signal.LOAD);
+        Assert.assertEquals(State.LOADED, fsm.getCurrentState());
+
+        fsm.nextState(Signal.CONFIRM_ERROR);
+        Assert.assertEquals(State.CONFIRM_ERROR, fsm.getCurrentState());
+
+        fsm.nextState(Signal.REQUEST);
         Assert.assertEquals(State.REQUEST, fsm.getCurrentState());
 
         fsm.nextState(Signal.UPDATE);
         Assert.assertEquals(State.FORM_UPDATED, fsm.getCurrentState());
+
+        fsm.nextState(Signal.LOAD_AND_CONFIRM);
+        Assert.assertEquals(State.CONFIRMED, fsm.getCurrentState());
+
+        fsm.nextState(Signal.FINISH);
+        Assert.assertEquals(State.FINISHED, fsm.getCurrentState());
 
         fsm.nextState(Signal.UPDATE);
         Assert.assertEquals(State.FORM_UPDATED, fsm.getCurrentState());
 
         fsm.nextState(Signal.LOAD);
         Assert.assertEquals(State.LOADED, fsm.getCurrentState());
+
+        fsm.nextState(Signal.CONFIRM_ERROR);
+        Assert.assertEquals(State.CONFIRM_ERROR, fsm.getCurrentState());
+
+        fsm.nextState(Signal.FINISH);
+        Assert.assertEquals(State.FINISHED, fsm.getCurrentState());
+
+        System.out.println("Currrent state is State." + fsm.getCurrentState());
+
     }
 }
